@@ -29,7 +29,7 @@ qa_data = [
             '3. 深度學習應用於金融商品之推薦\n'\
             '4.) 機器學習結合通訊網路之應用\n'\
             '5G network slicing\n',
-        "query_words": ['實驗室', '研究', '方向', '研究方向', '什麼', "方面"],
+        "query_words": ['實驗室', '研究', '方向', '研究方向', '什麼', "方面", "領域"],
         "require_words": []
     },
     {
@@ -69,6 +69,16 @@ qa_data = [
     {
         "answer": '主要是從計畫進行延伸',
         "query_words": ["論文", '題目', '由來', '來源'],
+        "require_words": []
+    },
+    {
+        "answer": '要找老師的話，麻煩寄信和老師洽談聯絡時間喔！',
+        "query_words": ["office", 'hour', '時間', "聯絡"],
+        "require_words": []
+    },
+    {
+        "answer": '這裡需要接計畫',
+        "query_words": ["要", '有', '接', "計畫", "需要", "接計畫", "不要", "沒有"],
         "require_words": []
     },
 ]

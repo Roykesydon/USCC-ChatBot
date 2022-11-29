@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  db:
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    image: mariadb:10.3
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: db_uscc_chatbot
+    ports:
+      - 3306:3306
+    networks:
+      uscc-chatbot-network:
+        ipv4_address: 10.5.0.2
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8001:80
+    environment:
+      PMA_HOSTS: db
+    depends_on:
+      - db
+    networks:
+      uscc-chatbot-network:
+        ipv4_address: 10.5.0.4
+
+networks:
+  uscc-chatbot-network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
