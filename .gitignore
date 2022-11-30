@@ -1,10 +1,16 @@
+# docker 
+.env
+
+# database
+/mysql
+
+# backend
+/backend/config.yml
+
 __pycache__/
 *.py[cod]
 
 dict.txt.big
 
-.env
-
-/mysql
-
-/backend/config.yml
+# frontend
+/frontend/src/config.js

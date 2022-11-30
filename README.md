@@ -8,3 +8,7 @@
     ```
 
 2. 填寫 .env
+
+3. 填寫  /backend/config.yml
+
+4. 填寫 /frontend/src/config.js
