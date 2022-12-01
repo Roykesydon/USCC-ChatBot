@@ -1,15 +1,18 @@
 from flask import Blueprint, request, session
-from utils.transaction_executor import TransactionExecutor
-from utils.jwt_handle import make_jwt_token
-from utils.validator import Validator
+
 from chatbot.core import get_response
+from utils.jwt_handle import make_jwt_token
+from utils.transaction_executor import TransactionExecutor
+from utils.validator import Validator
 
 user = Blueprint("user", __name__)
 import hashlib
 
+
 @user.route("/")
 def index():
     return "Hello user"
+
 
 @user.route("/login", methods=["POST"])
 def login():
@@ -61,5 +64,5 @@ def login():
 
         return_json["success"] = 1
         return_json["token"] = make_jwt_token(user_id)
-    
+
     return return_json

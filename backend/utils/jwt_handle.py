@@ -8,7 +8,11 @@ from utils.config import get_config
 def make_jwt_token(user_id, is_admin="0"):
     config = get_config()
     return jwt.encode(
-        {"user_id": user_id, "isAdmin": is_admin, "exp": time.time() + 60 * 60 * 24 * 3},
+        {
+            "user_id": user_id,
+            "isAdmin": is_admin,
+            "exp": time.time() + 60 * 60 * 24 * 3,
+        },
         config["jwt_secret_key"],
         algorithm="HS256",
     )

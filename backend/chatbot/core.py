@@ -1,11 +1,15 @@
 import re
+
 import jieba
+
 from .qa_data import qa_data
 
-jieba.set_dictionary('dict.txt.big')
+jieba.set_dictionary("dict.txt.big")
 
 
-def message_probability(user_message, recognised_words, required_words=[], exclude_words=[]):
+def message_probability(
+    user_message, recognised_words, required_words=[], exclude_words=[]
+):
     message_certainty = 0
     has_required_words = True
     has_exclude_words = False
@@ -46,12 +50,16 @@ def check_all_messages(message):
     # 計算預設問句和 message 的相似比例
     def response(bot_response, list_of_words, required_words=[], exclude_words=[]):
         nonlocal highest_prob_list
-        highest_prob_list[bot_response] = message_probability(message, list_of_words, required_words, exclude_words)
+        highest_prob_list[bot_response] = message_probability(
+            message, list_of_words, required_words, exclude_words
+        )
 
     # 預設問答集
     for qa in qa_data:
         # print(qa)
-        response(qa["answer"], qa["query_words"], qa["require_words"], qa["exclude_words"])
+        response(
+            qa["answer"], qa["query_words"], qa["require_words"], qa["exclude_words"]
+        )
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
     # print(highest_prob_list)
@@ -61,13 +69,12 @@ def check_all_messages(message):
         return "抱歉我不太懂"
     else:
         return best_match
-    
 
 
 # 回傳答案
-def get_response(question:str) -> str:
+def get_response(question: str) -> str:
     # print(question)
     split_message = list(jieba.cut(question, cut_all=False, HMM=True))
-    print('|'.join(split_message))
+    print("|".join(split_message))
     response = check_all_messages(split_message)
     return response

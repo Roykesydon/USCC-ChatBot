@@ -1,4 +1,5 @@
 from flask import Blueprint, request, session
+
 from chatbot.core import get_response
 from utils.jwt_handle import check_jwt_token_and_get_info
 

@@ -1,19 +1,20 @@
-from flask import Flask, session, Blueprint
-from user.api import user
-from chatbot.api import chatbot
-from flask_cors import CORS
-from datetime import timedelta
 import os
+from datetime import timedelta
+
+from flask import Blueprint, Flask, session
+from flask_cors import CORS
 
 import utils.connection_pool as connection_pool
+from chatbot.api import chatbot
+from user.api import user
 
 
 def create_app():
     app = Flask(__name__)
     CORS(app, supports_credentials=True)
     app.config["JSON_AS_ASCII"] = False
-    app.config['SECRET_KEY'] = os.urandom(24)
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=3)
+    app.config["SECRET_KEY"] = os.urandom(24)
+    app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=3)
 
     connection_pool.init()
 
@@ -22,9 +23,11 @@ def create_app():
 
 app = create_app()
 
+
 @app.before_request
 def make_session_permanent():
     session.permanent = True
+
 
 @app.route("/")
 def hello():

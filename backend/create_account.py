@@ -2,14 +2,12 @@ import base64
 import hashlib
 import os
 
-from utils.transaction_executor import TransactionExecutor
 import utils.connection_pool as connection_pool
+from utils.transaction_executor import TransactionExecutor
 
 connection_pool.init()
 
-print("輸入要新增的帳號密碼\n"\
-    "請只輸入大小寫英文或數字\n"\
-    "User ID 和密碼的長度請輸入 3 ~ 30 個字元")
+print("輸入要新增的帳號密碼\n" "請只輸入大小寫英文或數字\n" "User ID 和密碼的長度請輸入 3 ~ 30 個字元")
 user_id = input("請輸入要新增的 User ID: ")
 user_password = input("請輸入要新增的 User Password: ")
 
