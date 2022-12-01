@@ -13,6 +13,11 @@ def index():
 def query():
     return_json = {"success": False, "text": "", "msg": ""}
     query = request.args.get("text")
+
+    if len(query) > 100:
+        return_json["msg"] = "query too long"
+        return return_json
+
     answer = get_response(query)
     # print(answer)
 

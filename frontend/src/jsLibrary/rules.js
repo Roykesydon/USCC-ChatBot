@@ -32,4 +32,7 @@ export const rules = {
       "Must be between 6-30 characters"
     );
   },
+  chatbotQuery: (v) => {
+    return (v != null && v.length <= 50) || "最多 50 個字";
+  },
 };

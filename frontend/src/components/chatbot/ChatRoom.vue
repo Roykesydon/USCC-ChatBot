@@ -48,23 +48,27 @@
         </div>
       </v-row>
     </v-card-text>
-    <v-card-actions style="background-color: #303030">
-      <v-text-field
-        v-model="message"
-        label="輸入問題"
-        class="ml-2"
-        color="primary"
-        outlined
-        dense
-        hide-details
-      ></v-text-field>
-      <v-btn color="primary" outlined class="mx-3" @click="sendQuestion">
-        send
-      </v-btn>
-    </v-card-actions>
+    <v-form ref="queryForm" v-model="queryFormValid" lazy-validation>
+      <v-card-actions style="background-color: #303030">
+        <v-text-field
+          v-model="message"
+          label="輸入問題，勿超過 50 字"
+          class="ml-2"
+          color="primary"
+          :rules="[rules.chatbotQuery]"
+          outlined
+          dense
+          hide-details
+        ></v-text-field>
+        <v-btn color="primary" outlined class="mx-3" @click="sendQuestion">
+          send
+        </v-btn>
+      </v-card-actions>
+    </v-form>
   </v-card>
 </template>
 <script>
+import { rules } from "@/jsLibrary/rules.js";
 import { apiAddress } from "@/config.js";
 
 export default {
@@ -79,7 +83,7 @@ export default {
     });
   },
   data() {
-    return { messages: [], message: "" };
+    return { messages: [], message: "", rules: rules, queryFormValid: true };
   },
   methods: {
     idJustify: function (self) {
@@ -92,6 +96,12 @@ export default {
       return "start";
     },
     sendQuestion: async function () {
+      if (this.message == "") return;
+
+      if (this.$refs.queryForm.validate() == false) {
+        return;
+      }
+
       let _this = this;
       this.messages.push({
         username: this.$cookies.get("user_id"),

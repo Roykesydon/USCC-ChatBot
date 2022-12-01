@@ -1,6 +1,6 @@
 qa_data = [
     {
-        "answer": "哈囉！有什麼關於有什麼關於本實驗室的問題嗎？",
+        "answer": "哈囉！有什麼關於本實驗室的問題嗎？",
         "query_words": [
             "hello",
             "hi",
@@ -17,7 +17,7 @@ qa_data = [
         "exclude_words": [],
     },
     {
-        "answer": "更多實驗室的相關資訊請看: https://plato.csie.ncku.edu.tw/index.html",
+        "answer": "更多實驗室的相關資訊請看：https://plato.csie.ncku.edu.tw/index.html",
         "query_words": ["實驗室", "更多", "網站", "資訊", "相關"],
         "require_words": [],
         "exclude_words": ["風氣"],
@@ -29,7 +29,7 @@ qa_data = [
         "exclude_words": ["風氣"],
     },
     {
-        "answer": "最近的研究和計畫可參考此網站: "
+        "answer": "最近的研究和計畫可參考此網站："
         "https://arspb.nstc.gov.tw/NSCWebFront/modules/talentSearch/talentSearch.do?"
         "action=initRsm05&rsNo=2cc579bff41348198350c1c7b375f3fe&LANG=chi",
         "query_words": ["實驗室", "最近", "研究", "著作", "論文", "計畫", "案子"],
@@ -114,6 +114,12 @@ qa_data = [
     {
         "answer": "實驗室風氣很好，大家都很熱心助人",
         "query_words": ["風氣", "實驗室"],
+        "require_words": [],
+        "exclude_words": [],
+    },
+    {
+        "answer": "實驗室成員的名單請看：https://plato.csie.ncku.edu.tw/member.html",
+        "query_words": ["成員", "碩士生", "大專生", "誰", "實驗室"],
         "require_words": [],
         "exclude_words": [],
     },

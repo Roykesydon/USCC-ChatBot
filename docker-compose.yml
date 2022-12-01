@@ -10,29 +10,46 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_DATABASE: db_uscc_chatbot
-    ports:
-      - 3306:3306
-    networks:
-      uscc-chatbot-network:
-        ipv4_address: 10.5.0.2
+    # ports:
+    #   - 3306:3306
 
   phpmyadmin:
     image: phpmyadmin
     restart: always
-    ports:
-      - 8001:80
+    # ports:
+    #   - 8005:80
     environment:
       PMA_HOSTS: db
     depends_on:
       - db
-    networks:
-      uscc-chatbot-network:
-        ipv4_address: 10.5.0.4
 
-networks:
-  uscc-chatbot-network:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1
+  frontend:
+    build: ./frontend
+    restart: always
+    # ports:
+    #   - 8080:8080
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - db
+
+  backend:
+    build: ./backend
+    restart: always
+    # ports:
+    #   - 5000:5000
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+  
+  nginx:
+    image: nginx:1.20.1
+    restart: always
+    volumes:
+      - ./nginx_setting:/etc/nginx/
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - 8009:80

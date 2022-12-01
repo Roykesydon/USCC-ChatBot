@@ -13,4 +13,4 @@ __pycache__/
 dict.txt.big
 
 # frontend
-/frontend/src/config.js
+# /frontend/src/config.js
