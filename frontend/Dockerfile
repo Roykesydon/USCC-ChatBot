@@ -9,7 +9,8 @@ COPY . .
 # install dependencies
 RUN npm install
 
-
+RUN npm install -g @vue/cli-service
+RUN npm install -g @vue/cli
 
 # copy files and folders to the current working directory (i.e. 'app' folder)
 # COPY . .
