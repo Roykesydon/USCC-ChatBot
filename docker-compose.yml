@@ -16,8 +16,8 @@ services:
   phpmyadmin:
     image: phpmyadmin
     restart: always
-    # ports:
-    #   - 8005:80
+    ports:
+      - 8005:80
     environment:
       PMA_HOSTS: db
     depends_on:
@@ -52,4 +52,4 @@ services:
       - backend
       - frontend
     ports:
-      - 8009:80
+      - 80:80

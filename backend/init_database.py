@@ -19,11 +19,11 @@ connection = pymysql.connect(
 
 cursor = connection.cursor()
 
-cursor.execute("DROP TABLE IF EXISTS users;")
+cursor.execute("DROP TABLE IF EXISTS Users;")
 connection.commit()
 
 cursor.execute(
-    "CREATE TABLE IF NOT EXISTS users( \
+    "CREATE TABLE IF NOT EXISTS Users( \
         user_id varchar(50) NOT NULL, \
         password varchar(70) NOT NULL, \
         salt varchar(50) NOT NULL, \
