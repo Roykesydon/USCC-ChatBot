@@ -70,7 +70,8 @@ qa_data = [
         "1. 與老師約時間聯繫過\n"
         "2. 與學長姊談過\n"
         "3. 跟著參與一次 meeting\n"
-        "4. 完成老師指定的一個 small project",
+        "4. 完成老師指定的一個 small project\n"
+        "進來後也有教育訓練幫助上手",
         "query_words": ["想", "想要", "加入", "實驗室", "方法", "方式"],
         "require_words": [],
         "exclude_words": ["風氣"],
