@@ -1,5 +1,5 @@
 db:
-    host : localhost
+    host : db
     user : root
     password : "自己填"
     database : db_uscc_chatbot

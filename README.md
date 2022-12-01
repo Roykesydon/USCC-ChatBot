@@ -10,3 +10,8 @@
 2. 填寫 .env
 
 3. 填寫 /backend/config.yml
+
+## 如何使用
+```
+docker-compose up
+```
