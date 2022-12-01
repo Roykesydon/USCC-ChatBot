@@ -6,11 +6,16 @@ WORKDIR /app
 # copy 'package.json' to install dependencies
 COPY . .
 
+RUN rm -rf node_modules
+RUN rm -f package-lock.json
+
 # install dependencies
+RUN npm install npm@latest -g
+
 RUN npm install
 
 RUN npm install -g @vue/cli-service
-RUN npm install -g @vue/cli
+# RUN npm install -g @vue/cli
 
 # copy files and folders to the current working directory (i.e. 'app' folder)
 # COPY . .
