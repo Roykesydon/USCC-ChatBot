@@ -122,6 +122,9 @@ export default {
 
       await this.$axios
         .get(apiAddress + "/chatbot/query", {
+          headers: {
+            Authorization: `Bearer ${this.$cookies.get("token")}`,
+          },
           params: {
             text: message,
           },
@@ -136,6 +139,18 @@ export default {
               self: false,
             });
           } else {
+            if (
+              response.data.msg == "Token have expired" ||
+              response.data.msg == "Can't decode token"
+            ) {
+              _this.$toast.info("登入過期，請重新登入", {
+                position: "top-center",
+                timeout: 2000,
+              });
+              this.$cookies.remove("user_id");
+              this.$router.push({ path: "/login" });
+              return;
+            }
             _this.$toast.error(response.data.msg, {
               position: "top-center",
               timeout: 2000,

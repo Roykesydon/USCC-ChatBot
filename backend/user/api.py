@@ -1,6 +1,8 @@
 from flask import Blueprint, request, session
 from utils.transaction_executor import TransactionExecutor
+from utils.jwt_handle import make_jwt_token
 from utils.validator import Validator
+from chatbot.core import get_response
 
 user = Blueprint("user", __name__)
 import hashlib
@@ -9,10 +11,8 @@ import hashlib
 def index():
     return "Hello user"
 
-
 @user.route("/login", methods=["POST"])
 def login():
-    
     data = request.get_json()
     user_id = data["userID"]
     password = data["password"]
@@ -59,7 +59,7 @@ def login():
             return_json["msg"] = "SQL Insert error"
             return return_json
 
-        session["user_id"] = user_id
         return_json["success"] = 1
+        return_json["token"] = make_jwt_token(user_id)
     
     return return_json

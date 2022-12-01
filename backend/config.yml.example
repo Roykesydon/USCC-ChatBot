@@ -3,3 +3,5 @@ db:
     user : root
     password : "自己填"
     database : db_uscc_chatbot
+
+jwt_secret_key: "input_jwt_secret_key"

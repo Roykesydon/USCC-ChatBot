@@ -22,6 +22,9 @@ def create_app():
 
 app = create_app()
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
 
 @app.route("/")
 def hello():

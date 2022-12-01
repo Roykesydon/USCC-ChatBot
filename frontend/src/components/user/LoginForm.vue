@@ -93,6 +93,7 @@ export default {
         .then((response) => {
           if (response.data.success == 1) {
             this.$cookies.set("user_id", user_id);
+            this.$cookies.set("token", response.data.token);
             this.$toast.success("Login Success!", {
               position: "top-center",
               timeout: 2000,
