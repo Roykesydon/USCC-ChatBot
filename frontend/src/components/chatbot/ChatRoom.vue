@@ -48,7 +48,12 @@
         </div>
       </v-row>
     </v-card-text>
-    <v-form ref="queryForm" v-model="queryFormValid" lazy-validation>
+    <v-form
+      ref="queryForm"
+      v-model="queryFormValid"
+      lazy-validation
+      @submit.prevent="doNothing"
+    >
       <v-card-actions style="background-color: #303030">
         <v-text-field
           v-model="message"
@@ -59,6 +64,7 @@
           outlined
           dense
           hide-details
+          onSubmit="return false;"
         ></v-text-field>
         <v-btn color="primary" outlined class="mx-3" @click="sendQuestion">
           send
@@ -86,6 +92,7 @@ export default {
     return { messages: [], message: "", rules: rules, queryFormValid: true };
   },
   methods: {
+    doNothing: function () {},
     idJustify: function (self) {
       if (self) return "d-flex justify-end";
       return "";
